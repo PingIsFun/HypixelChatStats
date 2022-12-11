@@ -18,6 +18,5 @@ public class HyChatStatsMod {
     public void onFMLInitialization(net.minecraftforge.fml.common.event.FMLInitializationEvent event) {
         config = new ModConfig();
         CommandManager.INSTANCE.registerCommand(new ModCommand());
-        CommandManager.INSTANCE.registerCommand(new TestCommand());
     }
 }
