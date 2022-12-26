@@ -10,7 +10,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.client.gui.GuiPlayerTabOverlay;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import tv.twitch.chat.Chat;
 
 import java.lang.reflect.Field;
 
@@ -20,6 +19,7 @@ public class BWGameStats {
 
     // The cooldown period, in seconds
     private static final int COOLDOWN_PERIOD_SECONDS = 5;
+    private static final String GuiPlayerTabOverlay_FOOTER_SRG_NAME = "field_175255_h";
 
     @SubscribeEvent
     public void onTitle(TitleEvent event) {
@@ -49,7 +49,7 @@ public class BWGameStats {
     private IChatComponent getFooter(GuiPlayerTabOverlay object) {
         Field targetField = null;
         try {
-            targetField = object.getClass().getDeclaredField("field_175255_h");
+            targetField = object.getClass().getDeclaredField(GuiPlayerTabOverlay_FOOTER_SRG_NAME);
         } catch (NoSuchFieldException ignored) {}
 
         targetField.setAccessible(true);
