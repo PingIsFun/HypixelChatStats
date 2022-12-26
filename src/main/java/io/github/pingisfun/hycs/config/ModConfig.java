@@ -2,8 +2,7 @@ package io.github.pingisfun.hycs.config;
 
 import io.github.pingisfun.hycs.HyChatStatsMod;
 import cc.polyfrost.oneconfig.config.Config;
-import cc.polyfrost.oneconfig.config.annotations.Switch;
-import cc.polyfrost.oneconfig.config.annotations.Text;
+import cc.polyfrost.oneconfig.config.annotations.*;
 import cc.polyfrost.oneconfig.config.data.Mod;
 import cc.polyfrost.oneconfig.config.data.ModType;
 
@@ -21,7 +20,8 @@ public class ModConfig extends Config {
             category = "Auto", subcategory = "Bedwars Game Stats")
     public static boolean isBedwarsGameStatsEnabled = false;
 
-    @Switch(
+    @Slider(
+            min = 0, max = 10, step = 1,
             name = "Delay (in seconds)",
             category = "Auto", subcategory = "Bedwars Game Stats"
     )
