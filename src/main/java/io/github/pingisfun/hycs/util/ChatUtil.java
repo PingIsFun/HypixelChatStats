@@ -2,7 +2,6 @@ package io.github.pingisfun.hycs.util;
 
 import cc.polyfrost.oneconfig.libs.universal.ChatColor;
 import cc.polyfrost.oneconfig.libs.universal.UChat;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.github.pingisfun.hycs.HyChatStatsMod;
 import net.minecraft.client.Minecraft;
 
