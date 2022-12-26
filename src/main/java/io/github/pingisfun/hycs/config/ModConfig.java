@@ -17,10 +17,15 @@ public class ModConfig extends Config {
 
     // Auto
     @Switch(
-            name = "Bedwars Game Stats",
-            category = "Auto"
-    )
+            name = "Enabled",
+            category = "Auto", subcategory = "Bedwars Game Stats")
     public static boolean isBedwarsGameStatsEnabled = false;
+
+    @Switch(
+            name = "Delay (in seconds)",
+            category = "Auto", subcategory = "Bedwars Game Stats"
+    )
+    public static int bedwarsGameStatsDelay = 3;
     public ModConfig() {
         super(new Mod(HyChatStatsMod.NAME, ModType.HYPIXEL), HyChatStatsMod.MODID + ".json");
         initialize();

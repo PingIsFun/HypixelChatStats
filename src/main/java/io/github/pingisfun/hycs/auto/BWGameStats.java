@@ -46,7 +46,18 @@ public class BWGameStats {
                    ChatUtil.printError(footer.getUnformattedText());
                    return;
                 }
-                ChatUtil.sendChatMessage("/pc " + footer.getUnformattedText().replace("Ranks, Boosters & MORE! STORE.HYPIXEL.NET", ""));
+                Thread delayThread = new Thread(() -> {
+                    try {
+                        Thread.sleep(ModConfig.bedwarsGameStatsDelay * 1000); // Pause the current thread for 5 seconds
+                    } catch (InterruptedException error) {
+                        // Handle the exception if the thread is interrupted while sleeping
+                        HyChatStatsMod.LOGGER.error(error);
+                        ChatUtil.printError("Error: InterruptedException");
+                    }
+                    ChatUtil.sendChatMessage("/pc " + footer.getUnformattedText().replace("Ranks, Boosters & MORE! STORE.HYPIXEL.NET", ""));
+                });
+                delayThread.start(); // Start the new thread
+
             }
         }
     }
