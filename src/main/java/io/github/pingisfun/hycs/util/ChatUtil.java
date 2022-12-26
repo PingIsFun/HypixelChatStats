@@ -2,6 +2,8 @@ package io.github.pingisfun.hycs.util;
 
 import cc.polyfrost.oneconfig.libs.universal.ChatColor;
 import cc.polyfrost.oneconfig.libs.universal.UChat;
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import io.github.pingisfun.hycs.HyChatStatsMod;
 import net.minecraft.client.Minecraft;
 
 public class ChatUtil {
@@ -11,6 +13,9 @@ public class ChatUtil {
 
     public static void printRaw(String data) {
         UChat.chat(data);
+    }
+    public static void printError(String data) {
+        UChat.chat(ChatColor.RED + "[" + HyChatStatsMod.NAME + "] " + data);
     }
 
     public static void test() {

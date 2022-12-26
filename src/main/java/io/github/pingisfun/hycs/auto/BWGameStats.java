@@ -3,6 +3,7 @@ package io.github.pingisfun.hycs.auto;
 import cc.polyfrost.oneconfig.libs.universal.wrappers.message.UTextComponent;
 import cc.polyfrost.oneconfig.utils.hypixel.HypixelUtils;
 import cc.polyfrost.oneconfig.utils.hypixel.LocrawInfo;
+import io.github.pingisfun.hycs.HyChatStatsMod;
 import io.github.pingisfun.hycs.config.ModConfig;
 import io.github.pingisfun.hycs.events.TitleEvent;
 import io.github.pingisfun.hycs.util.ChatUtil;
@@ -40,24 +41,32 @@ public class BWGameStats {
             long currentTime = System.currentTimeMillis();
             if (currentTime - lastMessageTime > COOLDOWN_PERIOD_SECONDS * 1000) {
                 // Send the chat message and update the last message time
-                ChatUtil.sendChatMessage("/pc " + footer.getUnformattedText().replace("Ranks, Boosters & MORE! STORE.HYPIXEL.NET", ""));
                 lastMessageTime = currentTime;
+                if (footer.getUnformattedText().startsWith("Error:")) {
+                   ChatUtil.printError(footer.getUnformattedText());
+                   return;
+                }
+                ChatUtil.sendChatMessage("/pc " + footer.getUnformattedText().replace("Ranks, Boosters & MORE! STORE.HYPIXEL.NET", ""));
             }
         }
     }
 
     private IChatComponent getFooter(GuiPlayerTabOverlay object) {
-        Field targetField = null;
+        Field targetField;
         try {
             targetField = object.getClass().getDeclaredField(GuiPlayerTabOverlay_FOOTER_SRG_NAME);
-        } catch (NoSuchFieldException ignored) {}
+        } catch (NoSuchFieldException error) {
+            HyChatStatsMod.LOGGER.error(error);
+            return new UTextComponent("Error: NoSuchFieldException");
+        }
 
         targetField.setAccessible(true);
 
         try {
             return (IChatComponent) targetField.get(object);
-        } catch (IllegalAccessException ignored) {
-            return new UTextComponent("test");
+        } catch (IllegalAccessException error) {
+            HyChatStatsMod.LOGGER.error(error);
+            return new UTextComponent("Error: IllegalAccessException");
         }
     }
 }
