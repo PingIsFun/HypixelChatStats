@@ -67,7 +67,8 @@ repositories {
 dependencies {
     modCompileOnly("cc.polyfrost:oneconfig-$platform:0.1.0-alpha+")
     modRuntimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.1.0")
-//    modImplementation("net.hypixel:HypixelAPI:3.0.0")
+//    shade("net.hypixel:hypixel-api-core:4.2.1")
+//    shade("net.hypixel:hypixel-api-transport-apache:4.2.1")
 
     if (platform.isLegacyForge) {
         compileOnly("org.spongepowered:mixin:0.7.11-SNAPSHOT")
